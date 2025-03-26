@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    header#site-header {
+        height: 20px;
+
+    }
+    main {
+        margin: auto;
+        margin-top: 60px;
+        max-width: 80%;
+
+        /* home page */
+        .container {
+            .row {
+                justify-content: center;
+                .card {
+                    height: 350px;
+                    display: flex;
+                    align-items: center;
+                    margin-top: 10px;
+                    .row {
+                        height: 50%;
+                        width: 100%;
+                        img {
+                            height: 100%;
+                            width: 100%;
+                            background-color: black;
+                        }
+                        
+                    }
+                    a.btn {
+                        font-size: smaller;
+                        margin-bottom: 3px;
+                        margin-top: 3px;
+                    }
+                    .card-body {
+                        display: flex;
+                        flex-direction: column;
+                        flex-wrap: nowrap;
+                    }
+                }
+            }
+        }
+
+        /* about page */
+    }
+    
+}
+
+
+.clamp {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }

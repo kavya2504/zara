@@ -1,12 +1,36 @@
 {% extends 'base.html' %}
 
-{%block title%}
- <!--title of this page-->
- xshop | home 
- {% endblock %}
+{% block title %}
+ Z Shop | Home
+{% endblock %}
 
- {%block content %}
+{% block content %}
 
- this is my home page !!!! 
 
-  {% endblock %}
+
+
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-sm-3 card text-center shadow-sm mx-3">
+            <div class="row h-50">
+                <img class="card-img-top" src="{{product.img.url}}" alt="Picture of {{product.name}}">
+            </div>
+            <div class="row card-body h-40">
+                <h6>{{product.name}}</h6>
+                <p class="card-text">
+                    Rs. {{product.price}}
+                </p>
+                <small class="card-caption clamp">
+                    {{product.desc}}
+                </small>
+                <a href="" class="btn btn-primary w-60 center ">Add to Cart</a>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
