@@ -1,5 +1,5 @@
 """
-URL configuration for zara project.
+URL configuration for zshop project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -17,24 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# To include media files
 from django.conf import settings
 from django.conf.urls.static import static
 
-from mainapp import views  
-
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", views.homeView, name="homepage"),  
-    path("about/", views.aboutView, name="aboutpage"),
-    path("contact/", views.contactpageView, name="contactpage"),  
-    path('category/', views.Categorie1, name='Categorie1'),
-    path('category2/', views.Categorie2, name='Categorie2'),
-    path('Categorie3/', views.Categorie3, name='Categorie3'),
-    path('search/', views.search_results, name='search_results'),
-    path('product/<int:id>/', views.product_detail, name='product'), 
-    
+    path('admin/', admin.site.urls),
+    path('', include('mainapp.urls')),
+    path('cart/', include('cart.urls')),
+    path('accounts/', include('authentication.urls')), # includes login, register urls
+    path('accounts/',include('django.contrib.auth.urls')) # includes other auth urls
 ]
 
+# the following line allows us to use the given media path during development
 if settings.DEBUG == True:
- urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
-
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+# The above code generates unique urls for each media file in the provided MEDIA_ROOT location

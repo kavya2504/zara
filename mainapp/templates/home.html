@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
 
 {% block title %}
- Z Shop | Home
+ Zara Shop | Home
 {% endblock %}
 
 {% block content %}
 
+{% comment %}
+<ol>
+    {% for product in products %}
+    
+    <li>{{product.name}} - Rs. {{product.price}}</li>
+    
+    {% endfor %}
+</ol>
+{% endcomment %}
 
 
 
-<div class="container">
+
+<div class="container z-0">
     <div class="row">
         {% for product in products %}
         <div class="col-sm-3 card text-center shadow-sm mx-3">
@@ -17,7 +27,13 @@
                 <img class="card-img-top" src="{{product.img.url}}" alt="Picture of {{product.name}}">
             </div>
             <div class="row card-body h-40">
-                <h6>{{product.name}}</h6>
+            <h6>
+                <a href="{% url 'prod_details' product.id %}">
+                {{product.name}}
+
+                </a>	
+
+            </h6> 
                 <p class="card-text">
                     Rs. {{product.price}}
                 </p>
