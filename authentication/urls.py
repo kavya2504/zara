@@ -1,7 +1,7 @@
 from django.urls import path
 
-# importing necessary views 
-from .views import UserLogin, UserRegister
+ 
+from.views import UserLogin, UserRegister
 
 urlpatterns = [
     path('login', UserLogin.as_view(), name='signin'),

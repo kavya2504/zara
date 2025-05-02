@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
-# Import your Product model
-from .models import Product
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(
@@ -53,13 +51,3 @@ class CustomRegisterForm(UserCreationForm):
 
 
 
-class AddProductForm(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = ['name', 'price', 'description', 'image']  
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'image': forms.FileInput(attrs={'class': 'form-control'}),
-        }

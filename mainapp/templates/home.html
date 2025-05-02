@@ -1,52 +1,35 @@
 {% extends 'base.html' %}
 
 {% block title %}
- Zara Shop | Home
+Zara Shop | Home
 {% endblock %}
 
 {% block content %}
 
-{% comment %}
-<ol>
-    {% for product in products %}
-    
-    <li>{{product.name}} - Rs. {{product.price}}</li>
-    
-    {% endfor %}
-</ol>
-{% endcomment %}
-
-
-
-
 <div class="container z-0">
     <div class="row">
         {% for product in products %}
-        <div class="col-sm-3 card text-center shadow-sm mx-3">
+        <div class="col-sm-3 card text-center shadow-sm mx-3 p-2">
             <div class="row h-50">
-                <img class="card-img-top" src="{{product.img.url}}" alt="Picture of {{product.name}}">
+                <img class="card-img-top" src="{{ product.img.url }}" alt="Picture of {{ product.name }}">
             </div>
             <div class="row card-body h-40">
-            <h6>
-                <a href="{% url 'prod_details' product.id %}">
-                {{product.name}}
-
-                </a>	
-
-            </h6> 
+                <h6>
+                    <a href="{% url 'prod_details' product.id %}" class="product-name">
+                        {{ product.name }}
+                    </a>    
+                </h6> 
                 <p class="card-text">
-                    Rs. {{product.price}}
+                    Rs. {{ product.price }}
                 </p>
-                <small class="card-caption clamp">
-                    {{product.desc}}
+                <small class="card-caption clamp text-muted">
+                    {{ product.desc }}
                 </small>
-                <a href="" class="btn btn-primary w-60 center ">Add to Cart</a>
+                <a href="{% url 'add_to_cart' product.pk %}" class="btn btn-primary w-60 center">Add to Cart</a>
             </div>
-            
         </div>
         {% endfor %}
     </div>
-
 </div>
 
 {% endblock %}

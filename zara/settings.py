@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u^da$y9(wbp)=)57@lqbjhj0y40)o=co)9hve2+=)a5eib&!4m'
+SECRET_KEY = 'django-insecure-(+i^2*l$#lf$=%t8q29fhft)wmg3k@onixt-xd#a3xno$kg*21'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'mainapp',
     'authentication',
     'cart',
+    'orders',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -120,17 +122,37 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR/'static'
+    BASE_DIR / 'static'
 ]
 
+# configuring the user-uploaded media storage location
+# in development server, we are going to use a local folder inside the project 
+# to store the media. When deploying, we can replace the filepath 
+# with a url to the media server
+
 MEDIA_ROOT = BASE_DIR/'media'
-
-MEDIA_URL = '/media/'
-
-
-
+MEDIA_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = 'signin'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
+# Razorpay configs
+
+RAZORPAY_KEY_ID = "rzp_test_IvhcHeoNovUUfT"  # Replace with your Key ID
+RAZORPAY_KEY_SECRET = "6gzyH5ZmRLlgSFOzWjzrUgd7"
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://api.razorpay.com',  # Add Razorpay's domain
+]
+TIME_ZONE = 'Asia/Kolkata'  # Change to your local time zone
+USE_TZ = True

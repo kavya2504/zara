@@ -1,35 +1,34 @@
 """
-URL configuration for zshop project.
+URL configuration for zara project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+For more information, see:
+https://docs.djangoproject.com/en/5.1/topics/http/urls/
 """
+
 from django.contrib import admin
 from django.urls import path, include
-
-# To include media files
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    # Admin interface
     path('admin/', admin.site.urls),
+
+    # Main app routes
     path('', include('mainapp.urls')),
+
+    # Cart-related URLs
     path('cart/', include('cart.urls')),
-    path('accounts/', include('authentication.urls')), # includes login, register urls
-    path('accounts/',include('django.contrib.auth.urls')) # includes other auth urls
+
+    # Order and Payment URLs
+    path('orders/', include('orders.urls')),
+    path('payments/', include('payments.urls')),
+
+    # Authentication routes
+    path('accounts/', include('authentication.urls')),  # Custom login/signup
+    path('accounts/', include('django.contrib.auth.urls')),  # Built-in auth (login, logout, etc.)
 ]
 
-# the following line allows us to use the given media path during development
-if settings.DEBUG == True:
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-# The above code generates unique urls for each media file in the provided MEDIA_ROOT location
+# Serving media files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
