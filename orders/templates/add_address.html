@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
 
 {% block title %}
-
+Add Address
 {% endblock %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Add Address</button>
-</form>
-
-
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #f4f4f9;">
+    <div class="card p-4" style="width: 100%; max-width: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+        <h2 class="text-center mb-4" style="color: #333; font-family: 'Arial', sans-serif;">Add Address</h2>
+        
+        <form method="post" style="font-family: 'Arial', sans-serif;">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-success w-100" style="background-color: #28a745; border: none; padding: 12px; font-size: 16px; border-radius: 5px;">Add Address</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

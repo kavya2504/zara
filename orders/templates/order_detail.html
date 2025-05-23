@@ -6,16 +6,16 @@ Order Details - Order #{{ order.id }}
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2 class="text-center">Order Details</h2>
+<div class="order-details-container mt-4" style="max-width: 1200px; padding: 0 15px;">
+    <h2 class="order-details-title text-center" style="font-family: 'Arial', sans-serif; color: #333; margin-bottom: 30px;">Order Details</h2>
     <hr>
 
     <!-- Order Summary -->
-    <div class="card mb-4">
-        <div class="card-header bg-primary text-white">
+    <div class="order-summary-card mb-4" style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <div class="order-summary-header bg-primary text-white" style="border-radius: 10px 10px 0 0;">
             Order Summary
         </div>
-        <div class="card-body">
+        <div class="order-summary-body card-body" style="font-family: 'Arial', sans-serif; color: #555;">
             <p><strong>Order ID:</strong> {{ order.id }}</p>
             <p><strong>Order Date:</strong> {{ order.order_date|date:"d M Y, h:i A" }}</p>
             <p><strong>Status:</strong> {{ order.status }}</p>
@@ -25,11 +25,11 @@ Order Details - Order #{{ order.id }}
 
     <!-- Address Information -->
     {% if order.address %}
-    <div class="card mb-4">
-        <div class="card-header bg-success text-white">
+    <div class="shipping-address-card mb-4" style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <div class="shipping-address-header bg-success text-white" style="border-radius: 10px 10px 0 0;">
             Shipping Address
         </div>
-        <div class="card-body">
+        <div class="shipping-address-body card-body" style="font-family: 'Arial', sans-serif; color: #555;">
             <p><strong>Name:</strong> {{ order.address.full_name }}</p>
             <p><strong>Phone:</strong> {{ order.address.phone_number }}</p>
             <p><strong>Address:</strong> 
@@ -42,18 +42,18 @@ Order Details - Order #{{ order.id }}
         </div>
     </div>
     {% else %}
-    <div class="alert alert-warning">
+    <div class="no-shipping-address-alert alert alert-warning" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #856404; background-color: #fff3cd; border-color: #ffeeba;">
         No shipping address selected for this order.
     </div>
     {% endif %}
 
     <!-- Order Items -->
-    <div class="card">
-        <div class="card-header bg-secondary text-white">
+    <div class="ordered-items-card" style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <div class="ordered-items-header bg-secondary text-white" style="border-radius: 10px 10px 0 0;">
             Ordered Items
         </div>
-        <div class="card-body">
-            <table class="table table-striped">
+        <div class="ordered-items-body card-body" style="font-family: 'Arial', sans-serif; color: #555;">
+            <table class="ordered-items-table table table-striped" style="border-radius: 8px; overflow: hidden; font-size: 16px;">
                 <thead>
                     <tr>
                         <th>Product</th>
@@ -66,7 +66,7 @@ Order Details - Order #{{ order.id }}
                     {% for detail in order.order_details.all %}
                     <tr>
                         <td>
-                            <a href="{% url 'prod_details' detail.order_item.id %}">
+                            <a href="{% url 'prod_details' detail.order_item.id %}" style="text-decoration: none; color: #007bff; font-weight: bold;">
                                 {{ detail.order_item.name }}
                             </a>
                         </td>

@@ -1,27 +1,35 @@
 {% extends 'base.html' %}
 
 {% block title %}
-
+Select Address
 {% endblock %}
 
 {% block content %}
+<div class="container py-5" style="max-width: 700px;">
+  <div class="card shadow-lg rounded-4 p-4 bg-white">
+    <h3 class="text-center mb-4 fw-bold text-primary">Select an Address</h3>
+    <hr class="mb-4">
 
-<form method="post">
-    {% csrf_token %}
-    <h3>Select an Address</h3>
-    <ul>
+    <form method="post">
+      {% csrf_token %}
+
+      <ul class="list-group mb-4">
         {% for address in addresses %}
-        <li>
-            <label>
-                <input type="radio" name="address" value="{{ address.id }}">
-                {{ address.full_name }}, {{ address.address_line1 }}, {{ address.city }}, {{ address.state }} - {{ address.pincode }}
-            </label>
+        <li class="list-group-item d-flex align-items-start">
+          <input class="form-check-input me-3 mt-1" type="radio" name="address" value="{{ address.id }}" required>
+          <div>
+            <strong>{{ address.full_name }}</strong><br>
+            {{ address.address_line1 }}, {{ address.city }}, {{ address.state }} - {{ address.pincode }}
+          </div>
         </li>
         {% endfor %}
-    </ul>
-    <button type="submit" class="btn btn-primary">Select Address</button>
-</form>
-<a href="{% url 'add_address'  %}?next={{request.path}}" class="btn btn-secondary">Add address</a>
+      </ul>
 
-
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary rounded-pill py-2">Select Address</button>
+        <a href="{% url 'add_address' %}?next={{ request.path }}" class="btn btn-outline-secondary rounded-pill py-2">Add New Address</a>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

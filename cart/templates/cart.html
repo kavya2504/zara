@@ -1,80 +1,67 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}
-{{user}}'s Cart
 
+{% block title %}
+{{ user }}'s Cart
 {% endblock %}
 
 {% block content %}
-
-<div class="container-fluid">
-    {% if items %}
-
-    <table class="table">
-        <thead>
-            <th>
-    
-            </th>
-            <th>
-                Product
-            </th>
-            <th>
-                Price
-            </th>
-            <th>
-                Quantity
-            </th>
-            <th>
-                Sub Total
-            </th>
-            <th>
-    
-            </th>
+<section class="container py-5">
+  {% if items %}
+  <div class="card shadow-lg rounded-4 p-4" style="background-color: #fffefc;">
+    <h2 class="mb-4 fw-bold text-center">Your Cart</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Action</th>
+          </tr>
         </thead>
         <tbody>
-            {% for item in items %}
-            <tr class="h-10" id="cart-item-{{item.id}}">
-                <td class="w-auto">
-                    {% if item.product.pic %}
-                        <img src="{{item.product.pic.url}}" height="20px" alt="An image of {{item.product.name}}">
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{% url 'prod_details' item.product.id %}">{{item.product.name }}</a>
-                </td>
-                <td>
-                    {{item.product.price}}
-                </td>
-                <td class="grid">
-                    <div class="row w-100">            
-                    <button onclick="updateCart('{% url 'rem_quantity' item.id %}', {{ item.id }}, false, '{{ csrf_token }}')" class="btn btn-outline-secondary col align-middle">
-                        -
-                    </button>
-                        <p id="quantity-{{ item.id }}" class="col align-middle text-center">{{item.quantity}}</p>
-
-                    <button onclick="updateCart('{% url 'add_quantity' item.id %}', {{ item.id }}, true, '{{ csrf_token }}')" class="btn btn-outline-secondary col align-middle">+</button>
-                    </div>
-                </td>
-                <td id="total-price-{{ item.id }}">
-                    {{item.get_total}}
-                </td>
-                <td>
-                    <a href="{% url 'rem_from_cart' item.id %}" class="btn btn-danger">Remove from Cart</a>
-                </td>
-            </tr>
-            {% endfor %}
-            <tr>
-                <th colspan="4" class="text-center text-warning bg-dark">Total</th>
-                <td class="bg-secondary"><strong>Rs.<span id="overall-total">{{ total }}</span></strong></td>
-                <td><a href="{% url 'create_order' %}" class="btn btn-primary">Place Your Order</a></td>
-            </tr>
+          {% for item in items %}
+          <tr id="cart-item-{{ item.id }}">
+            <td>
+              <a href="{% url 'prod_details' item.product.id %}" class="text-decoration-none fw-medium">{{ item.product.name }}</a>
+            </td>
+            <td><strong>₹{{ item.product.price }}</strong></td>
+            <td>
+              <div class="d-flex justify-content-center align-items-center gap-2">
+                <button onclick="updateCart('{% url 'rem_quantity' item.id %}', {{ item.id }}, false, '{{ csrf_token }}')" class="btn btn-outline-dark btn-sm rounded-circle px-2">−</button>
+                <span id="quantity-{{ item.id }}" class="px-2 fw-semibold">{{ item.quantity }}</span>
+                <button onclick="updateCart('{% url 'add_quantity' item.id %}', {{ item.id }}, true, '{{ csrf_token }}')" class="btn btn-outline-dark btn-sm rounded-circle px-2">+</button>
+              </div>
+            </td>
+            <td id="total-price-{{ item.id }}"><strong>₹{{ item.get_total }}</strong></td>
+            <td>
+              <a href="{% url 'rem_from_cart' item.id %}" class="btn btn-danger btn-sm rounded-pill">Remove</a>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="3" class="text-end fw-bold bg-dark text-warning">Total:</td>
+            <td class="bg-light fw-bold text-dark">₹<span id="overall-total">{{ total }}</span></td>
+            <td>
+              <a href="{% url 'create_order' %}" class="btn btn-primary rounded-pill">Place Order</a>
+            </td>
+          </tr>
         </tbody>
-    </table>
-    
-    {% else %}
-    Cart is Empty!!!
-    {% endif %}
-    <a href="{% url 'homepage' %}" class="btn btn-primary">Shop More!!!</a>
-</div>
+      </table>
+    </div>
 
+    <!-- Shop More Button -->
+    <div class="text-center mt-4">
+      <a href="{% url 'homepage' %}" class="btn btn-secondary rounded-pill px-4">Shop More</a>
+    </div>
+  </div>
+  {% else %}
+  <div class="card p-5 text-center shadow-sm bg-light rounded-4">
+    <h4 class="text-muted">Your cart is empty!</h4>
+    <a href="{% url 'homepage' %}" class="btn btn-primary mt-3 rounded-pill px-4">Shop Now</a>
+  </div>
+  {% endif %}
+</section>
 {% endblock %}

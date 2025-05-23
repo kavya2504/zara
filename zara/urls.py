@@ -1,9 +1,9 @@
-"""
-URL configuration for zara project.
+# """
+# URL configuration for zara project.
 
-For more information, see:
-https://docs.djangoproject.com/en/5.1/topics/http/urls/
-"""
+# For more information, see:
+# https://docs.djangoproject.com/en/5.1/topics/http/urls/
+# """
 
 from django.contrib import admin
 from django.urls import path, include
@@ -13,6 +13,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     # Admin interface
     path('admin/', admin.site.urls),
+    
 
     # Main app routes
     path('', include('mainapp.urls')),

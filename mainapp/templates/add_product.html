@@ -4,17 +4,17 @@ Add product
 {% endblock %}
 
 {% block content %}
-
-
-<div>
-    <form method="post" enctype="multipart/form-data" class="form-control">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-primary">Add</button>
-    </form>
+<div class="container my-5" style="max-width: 600px;">
+  <h2 class="mb-4 text-center" style="color: #5e4b44; font-weight: 700;">Add New Product</h2>
+  <form method="post" enctype="multipart/form-data" 
+        class="p-4 border rounded shadow-sm" 
+        style="background-color: #fff6ed; border-color: #ba8f6a;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mt-3 w-100" 
+            style="background-color: #ba8f6a; border-color: #ba8f6a; font-weight: 600; font-size: 1.1rem;">
+      Add Product
+    </button>
+  </form>
 </div>
-
-
-
-
 {% endblock %}

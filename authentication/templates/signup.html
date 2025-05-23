@@ -1,33 +1,32 @@
-
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}
 Register
 {% endblock %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center min-vh-80">
-    <div class="card shadow p-4">
-        <h2 class="mb-4 text-center">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh; background-color: #fdf6f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div class="card shadow p-4" style="width: 100%; max-width: 450px; border-radius: 1rem; border: 1px solid #e4dcd5; background-color: #ffffff;">
+        <h2 class="mb-4 text-center" style="font-weight: 700; color: #4a3f35;">
             Register
         </h2>
         <form method="post">
             {% csrf_token %}
             {% for field in form %}
             <div class="mb-3">
-                <label for="{{field.id_for_label}}" class="form-label">{{field.label}}</label>
-                {{field}} <!-- This renders out to become input field -->
+                <label for="{{ field.id_for_label }}" class="form-label" style="font-weight: 600; color: #4a3f35;">{{ field.label }}</label>
+                {{ field }} <!-- Input field -->
 
                 {% if field.errors %}
-                <div class="text-danger small">
-                    {{field.errors | striptags }}
+                <div class="text-danger small" style="margin-top: 4px;">
+                    {{ field.errors|striptags }}
                 </div>
                 {% endif %}
             </div>
             {% endfor %}
-            <button class="btn btn-primary" type="submit">Register</button>
+            <button class="btn btn-primary" type="submit" style="width: 100%; padding: 0.6rem; font-weight: 600; border-radius: 0.5rem;">Register</button>
         </form>
     </div>
-
 </div>
 {% endblock %}

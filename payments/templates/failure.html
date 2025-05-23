@@ -1,3 +1,9 @@
-<h1>Payment Failed</h1>
-<p>{{ error }}</p>
-<a href="/">Go Back to Home</a>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+ <div class="text-center p-5 rounded-4 shadow-lg" style="background-color: #fff6ed; color: #5e4b44;">
+   <h1 class="mb-3" style="color: #d9534f;">Payment Failed</h1>
+   <p class="mb-4 fw-medium">{{ error }}</p>
+   <a href="{% url 'homepage' %}" class="btn rounded-pill px-4 py-2 fw-semibold text-light" style="background-color: #ba8f6a;">
+     ← Go Back to Home
+   </a>
+ </div>
+</div>

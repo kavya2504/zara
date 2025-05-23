@@ -1,11 +1,55 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
- zara | About
+ZARA | About
 {% endblock %}
 
 {% block content %}
+<section class="container py-5 d-flex justify-content-center">
+  <div class="card shadow-lg rounded-4 p-5" style="max-width: 900px; background: #fff9f4;">
+    <div class="text-center mb-5">
+      <h1 class="display-4 fw-bold">About <span class="text-decoration-underline">ZARA</span></h1>
+      <p class="lead text-muted">Handcrafted luxury scented candles that turn moments into memories.</p>
+    </div>
 
-This is my about page !!!
+    <!-- Text Section Only -->
+    <div class="text-center mb-5">
+      <h3 class="mb-3">Crafted with Purpose</h3>
+      <p>
+        At <strong>ZARA</strong>, we hand-pour every candle using natural soy wax, lead-free wicks, and the finest essential oils. Our scents are designed to create a calming ambiance and an unforgettable sensory experience.
+      </p>
+      <p>
+        Whether it’s cozy evenings, quiet mornings, or moments of mindfulness — ZARA candles are made to elevate your everyday rituals.
+      </p>
+    </div>
 
+    <hr class="my-5">
+
+    <div class="row text-center justify-content-center">
+      <div class="col-12 col-md-4 mb-4">
+        <i class="bi bi-flower3 fs-1 text-warning"></i>
+        <h5 class="fw-bold mt-3">Natural Ingredients</h5>
+        <p>Made with 100% soy wax and clean fragrances – safe for you and the planet.</p>
+      </div>
+      <div class="col-12 col-md-4 mb-4">
+        <i class="bi bi-heart fs-1 text-danger"></i>
+        <h5 class="fw-bold mt-3">Handcrafted with Love</h5>
+        <p>Every candle is lovingly handmade to ensure the highest quality and uniqueness.</p>
+      </div>
+      <div class="col-12 col-md-4 mb-4">
+        <i class="bi bi-globe fs-1 text-success"></i>
+        <h5 class="fw-bold mt-3">Sustainable Brand</h5>
+        <p>Eco-conscious packaging and responsible sourcing are part of who we are.</p>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <blockquote class="blockquote">
+        <p class="mb-0 fs-4 fst-italic">“Light a candle. Light up a moment.”</p>
+      </blockquote>
+      <footer class="blockquote-footer mt-2">The ZARA Team</footer>
+    </div>
+  </div>
+</section>
 {% endblock %}

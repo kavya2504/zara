@@ -66,8 +66,11 @@ class DelProduct(DeleteView):
 
 
 # 🔍 Search View (fixed and moved outside any class)
+from django.shortcuts import render
+from .models import Product
+
 def searchView(request):
-    query = request.GET.get('search_text')
+    query = request.GET.get('search_text', '')
     result_products = Product.objects.filter(name__icontains=query)
 
     context = {
@@ -76,5 +79,4 @@ def searchView(request):
         'search_bar': True
     }
 
-    template = loader.get_template('search_results.html')
-    return HttpResponse(template.render(context, request))
+    return render(request, 'search_results.html', context)
